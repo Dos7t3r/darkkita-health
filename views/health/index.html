@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apple Health · Darkkita</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">DARKKITA · APPLE HEALTH</p>
+          <h1>健康数据</h1>
+          <p class="sub">睡眠、步数、心率与训练——只展示 iPhone 实际上传的数据。</p>
+        </div>
+        <div class="hero-actions">
+          <span id="freshness" class="pill">读取中</span>
+          <button id="refresh" class="btn">刷新</button>
+        </div>
+      </header>
+
+      <section id="empty" class="empty hidden">
+        <strong>还没有健康数据</strong>
+        <p>先让 iPhone 快捷指令向 你自行部署的健康接口 上传一次睡眠或步数。</p>
+      </section>
+
+      <div id="content" class="content hidden">
+        <section class="stats-grid">
+          <article class="card stat">
+            <span class="label">最近睡眠</span>
+            <strong id="sleepValue" class="big">—</strong>
+            <small id="sleepSub">—</small>
+          </article>
+          <article class="card stat">
+            <span class="label">最近步数</span>
+            <strong id="stepsValue" class="big">—</strong>
+            <small id="stepsSub">—</small>
+          </article>
+          <article class="card stat">
+            <span class="label">指标记录</span>
+            <strong id="metricValue" class="big">—</strong>
+            <small id="metricSub">—</small>
+          </article>
+          <article class="card stat">
+            <span class="label">最后上传</span>
+            <strong id="updatedValue" class="big small-big">—</strong>
+            <small id="updatedSub">—</small>
+          </article>
+        </section>
+
+        <section class="card chart-card">
+          <div class="section-head">
+            <div>
+              <h2>最近趋势</h2>
+              <p>睡眠小时数与步数，按上传日期排列。</p>
+            </div>
+            <select id="dateSelect" aria-label="选择日期"></select>
+          </div>
+          <canvas id="trend" height="180"></canvas>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <h2 id="dayTitle">最近一晚</h2>
+              <p id="daySub">—</p>
+            </div>
+            <span id="dayBadge" class="pill muted">—</span>
+          </div>
+
+          <div class="sleep-layout">
+            <div class="sleep-stage-wrap">
+              <div class="stage-bar" id="stageBar"></div>
+              <div class="stage-legend">
+                <span><i class="dot deep"></i>深睡</span>
+                <span><i class="dot rem"></i>REM</span>
+                <span><i class="dot core"></i>核心</span>
+                <span><i class="dot awake"></i>夜醒</span>
+              </div>
+              <div class="times">
+                <span>入睡 <b id="bedtime">—</b></span>
+                <span>起床 <b id="wakeTime">—</b></span>
+              </div>
+            </div>
+            <div class="sleep-numbers">
+              <div><span>卧床</span><b id="inBed">—</b></div>
+              <div><span>夜醒</span><b id="awake">—</b></div>
+              <div><span>样本</span><b id="samples">—</b></div>
+            </div>
+          </div>
+
+          <div id="metricsGrid" class="metrics-grid"></div>
+          <div id="workouts" class="workouts"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <h2>最近记录</h2>
+              <p>点击日期可回看当天上传的数据。</p>
+            </div>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

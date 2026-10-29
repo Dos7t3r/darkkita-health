@@ -1,0 +1,8 @@
+{
+  "views": {
+    "health": {
+      "title": "Apple Health",
+      "description": "查看 iPhone 上传的睡眠、步数与多指标历史。"
+    }
+  }
+}

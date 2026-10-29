@@ -1,0 +1,20 @@
+{
+  "wake_enabled": {
+    "description": "启用起床后 AI 问候",
+    "type": "bool",
+    "default": false,
+    "hint": "先设置下方目标会话；需要本机接收服务与插件共享数据目录。"
+  },
+  "wake_session": {
+    "description": "起床问候目标会话",
+    "type": "string",
+    "default": "",
+    "hint": "填写自己的 AstrBot unified_msg_origin；如 telegram:FriendMessage:YOUR_CHAT_ID。请勿填写他人的会话。"
+  },
+  "wake_replaces_job_id": {
+    "description": "可选：要停用的旧晨报任务 ID",
+    "type": "string",
+    "default": "",
+    "hint": "仅在替换已有固定晨报时填写，留空不会停用任何任务。"
+  }
+}

@@ -1,0 +1,13 @@
+# Add these directives inside your own HTTPS server {} block.
+# Supply your own domain and TLS certificate. This is NOT a complete nginx config.
+location = /health/ping {
+    proxy_pass http://127.0.0.1:8799;
+    proxy_set_header Host $host;
+}
+location = /health/ingest {
+    client_max_body_size 3m;
+    proxy_pass http://127.0.0.1:8799;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_read_timeout 60s;
+}

@@ -1,0 +1,20 @@
+services:
+  health-ingest:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8799:8799"
+    environment:
+      HEALTH_TIMEZONE: ${HEALTH_TIMEZONE:-UTC}
+    volumes:
+      - ./runtime/health:/data/health
+      - ./runtime/secrets:/data/secrets
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

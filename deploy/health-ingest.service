@@ -1,0 +1,24 @@
+[Unit]
+Description=Darkkita Health receiver
+After=network.target
+
+[Service]
+Type=simple
+User=health
+Group=health
+WorkingDirectory=/opt/darkkita-health
+EnvironmentFile=-/etc/darkkita-health.env
+Environment=HEALTH_INGEST_BASE=/var/lib/darkkita-health/secrets
+Environment=HEALTH_DATA_ROOT=/var/lib/darkkita-health/health
+ExecStart=/usr/bin/python3 /opt/darkkita-health/server/health_ingest.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/darkkita-health
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
